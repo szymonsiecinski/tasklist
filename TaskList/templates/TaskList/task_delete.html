@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post">{% csrf_token %}
+	<form method="post" action="">{% csrf_token %}
 		Czy na pewno chcesz usunąć zadanie "{{ object }}" ?
 		<input type="submit" value="Usuń" />
 	</form>
