@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lista zadań</title>
+</head>
+<body>
+	<ul>
+		{% for task in object_list %}
+		<li>{{task.name}} :
+			<a href="{% url "task_edit" task.id %}">edytuj</a>
+			<a href="{% url "task_delete" task.id %}">usuń</a>
+		</li>
+		{% endfor %}
+	</ul>
+	
+	<a href="{% url "task_name" %}">dodaj</a>
+</body>
+</html>
