@@ -22,7 +22,7 @@ class Task(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('task', kwargs={'id': self.id})
+        return reverse('task', kwargs={'pk': self.pk})
     
     def finish(self):
         self.done = True

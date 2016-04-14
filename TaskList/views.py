@@ -22,12 +22,12 @@ class TaskCreate(CreateView):
     '''
     model = Task
     success_url = reverse_lazy('task_list')
-    fields = ['name', 'description', 'start', 'end']
+    fields = ['name', 'description', 'start', 'end', 'done']
     
 class TaskUpdate(UpdateView):
     model = Task
     success_url = reverse_lazy('task_list')
-    fields = ['name', 'description', 'start', 'end']
+    fields = ['name', 'description', 'start', 'end', 'done']
     
 class TaskDelete(DeleteView):
     model = Task
