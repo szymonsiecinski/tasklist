@@ -14,8 +14,8 @@ class Task(models.Model):
     '''
     name = models.CharField(max_length=256)
     description = models.TextField(max_length=4000)
-    start = models.DateTimeField(auto_now_add=True)
-    end = models.DateTimeField(auto_now_add=True)
+    start = models.DateTimeField(default=datetime.now)
+    end = models.DateTimeField(default=datetime.now)
     done = models.BooleanField()
 
     def __unicode__(self):
