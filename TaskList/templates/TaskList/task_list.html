@@ -7,14 +7,24 @@
 <body>
 <h1>List zadań do wykonania</h1>
 
-	<ul>
-		{% for task in object_list %}
-		<li>{{task.name}}:
+<table>
+<thead>
+<tr>
+<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>Zrobione</td><td>akcje</td>
+</tr>
+</thead>
+<tbody>
+{% for task in object_list %}
+	<tr>
+		<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td><td>{{task.done}}</td>
+		<td>
 			<a href="{% url "task_edit" task.id %}">edytuj</a>
 			<a href="{% url "task_delete" task.id %}">usuń</a>
-		</li>
-		{% endfor %}
-	</ul>
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
 	
 	<a href="{% url "task_new" %}">dodaj</a>
 	<a href="{% url "task_list_done" %}">pokaż wykonane zadania</a>

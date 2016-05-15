@@ -2,26 +2,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-{% if task.done %}
+{% if done %}
 <title>Lista zadań - wykonane</title>
 {% else %}
 <title>Lista zadań - do zrobienia</title>
 {% endif %}
 </head>
 <body>
-{% if task.done %}
+{% if done %}
 <h1>List wykonanych zadań</h1>
 {% else %}
 <h1>List zadań do zrobienia</h1>
 {% endif %}
-	<ul>
-		{% for task in object_list %}
-		<li>{{task.name}}:
+
+<table>
+<thead>
+<tr>
+<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>akcje</td>
+</tr>
+</thead>
+<tbody>
+{% for task in object_list %}
+	<tr>
+		<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td>
+		<td>
 			<a href="{% url "task_edit" task.id %}">edytuj</a>
 			<a href="{% url "task_delete" task.id %}">usuń</a>
-		</li>
-		{% endfor %}
-	</ul>
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+</table>
 	
 	<a href="{% url "task_new" %}">dodaj</a>
 	<a href="{% url "task_list" %}">pokaż listę zadań</a>

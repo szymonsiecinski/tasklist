@@ -6,7 +6,7 @@
 </head>
 <body>
 	<form method="post" action="">{% csrf_token %}
-		Czy na pewno chcesz usunąć zadanie "{{ object }}" ?
+		Czy na pewno chcesz usunąć zadanie "{{ object.name }}" ?
 		<input type="submit" value="Tak" />
 		<a href="{% url "task_list" %}">Nie</a>
 	</form>
