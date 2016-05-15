@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lista zadań</title>
+<title>Lista zadań - wykonane</title>
 </head>
 <body>
-<h1>List zadań do wykonania</h1>
+<h1>List wykonanych zadań</h1>
 
 	<ul>
 		{% for task in object_list %}
@@ -17,7 +17,6 @@
 	</ul>
 	
 	<a href="{% url "task_new" %}">dodaj</a>
-	<a href="{% url "task_list_done" %}">pokaż wykonane zadania</a>
-	<a href="{% url "task_list_todo" %}">pokaż zadania do zrobienia</a>
+	<a href="{% url "task_list" %}">pokaż listę zadań</a>
 </body>
 </html>

@@ -32,3 +32,11 @@ class TaskUpdate(UpdateView):
 class TaskDelete(DeleteView):
     model = Task
     success_url= reverse_lazy('task_list')
+    
+class TaskListDone(ListView):
+    template_name = "task_list_filt.html"
+    queryset = Task.objects.filter(done=True)
+    
+class TaskListToDo(ListView):
+    template_name = "task_list_filt.html"
+    queryset = Task.objects.filter(done=False)

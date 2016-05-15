@@ -13,13 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from TaskList import views
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^$', views.TaskList.as_view(), name='task_list'),
-    url(r'^new$', views.TaskCreate.as_view(), name='task_new'),
+    url(r'^new/$', views.TaskCreate.as_view(), name='task_new'),
     url(r'^edit/(?P<pk>\d+)$', views.TaskUpdate.as_view(), name='task_edit'),
     url(r'^delete/(?P<pk>\d+)$', views.TaskDelete.as_view(), name='task_delete'),
-    url(r'', views.TaskList.as_view(), name='task_list'),
-)
+    url(r'^done/$', views.TaskListDone.as_view(), name='task_list_done'),
+    url(r'^todo/$', views.TaskListToDo.as_view(), name='task_list_todo')
+]

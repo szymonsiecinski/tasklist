@@ -8,6 +8,7 @@
 <form method="post" action="">{% csrf_token %}
 {{form.as_p}}
 <input type="submit" value="Zapisz" />
+<a href="{% url "task_list" %}">Powrót do listy zadań</a>
 </form>
 </body>
 </html>
