@@ -20,4 +20,4 @@ Polecenie migrate Django
 ## Do zrobienia
 * Dodanie filtru zadań do zrobienia (wyświetlanie wyłącznie zadań do zrobienia)
 * Ostylowanie z Bootstrap 3
-* Wyświetlanie w tabeli opisu zadań. W nagłówku kolumny zgodnie z modelem
+* ~~Wyświetlanie w tabeli opisu zadań. W nagłówku kolumny zgodnie z modelem~~
