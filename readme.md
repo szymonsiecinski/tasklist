@@ -1,6 +1,8 @@
 # TaskList
 Lista zadań w Django
 
+**Autorzy**: Szymon Sieciński, Klaudia Kłoniecka, Agnieszka Kuźniak
+
 ## Wymagania
 * Python 3.4 +
 * Django 1.8 +
@@ -19,5 +21,5 @@ Polecenie migrate Django
 
 ## Do zrobienia
 * ~~Dodanie filtru zadań do zrobienia (wyświetlanie wyłącznie zadań do zrobienia)~~
-* Ostylowanie z Bootstrap 3
+* ~~Ostylowanie z Bootstrap 3~~
 * ~~Wyświetlanie w tabeli opisu zadań. W nagłówku kolumny zgodnie z modelem~~

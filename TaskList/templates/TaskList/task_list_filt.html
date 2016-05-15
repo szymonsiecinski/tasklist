@@ -2,11 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+{% load staticfiles %}
 {% if view.done %}
 <title>Lista zadań - wykonane</title>
 {% else %}
 <title>Lista zadań - do zrobienia</title>
 {% endif %}
+<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 </head>
 <body>
 
@@ -16,7 +19,7 @@
 <h1>List zadań do zrobienia</h1>
 {% endif %}
 
-<table>
+<table class="table">
 <thead>
 <tr>
 <td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>akcje</td>
@@ -35,7 +38,7 @@
 </tbody>
 </table>
 	
-	<a href="{% url "task_new" %}">dodaj</a>
-	<a href="{% url "task_list" %}">pokaż listę zadań</a>
+	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
+	<a class="btn btn-default" href="{% url "task_list" %}">pokaż listę zadań</a>
 </body>
 </html>
