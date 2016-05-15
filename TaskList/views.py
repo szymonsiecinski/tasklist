@@ -33,12 +33,9 @@ class TaskDelete(DeleteView):
     url= reverse_lazy('task_list')
 
 class TaskListDone(ListView):
-    queryset = Task.objects.filter(done=True)
-    
-#     def get_context_data(self, **kwargs):
-#         context = super(FilteredTaskList, self).get_context_data(**kwargs)
-#         context['task'] = Task.objects.filter(done=True)
-#         return context
+    done = True
+    queryset = Task.objects.filter(done=done)
     
 class TaskListToDo(ListView):
-    queryset = Task.objects.filter(done=False)
+    done = False
+    queryset = Task.objects.filter(done=done)

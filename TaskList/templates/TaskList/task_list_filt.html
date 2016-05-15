@@ -2,14 +2,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-{% if done %}
+{% if view.done %}
 <title>Lista zadań - wykonane</title>
 {% else %}
 <title>Lista zadań - do zrobienia</title>
 {% endif %}
 </head>
 <body>
-{% if done %}
+
+{% if view.done %}
 <h1>List wykonanych zadań</h1>
 {% else %}
 <h1>List zadań do zrobienia</h1>
