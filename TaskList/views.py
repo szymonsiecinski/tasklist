@@ -4,7 +4,6 @@ Created on 13 kwi 2016
 @author: uzytkownik
 '''
 
-from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -31,12 +30,15 @@ class TaskUpdate(UpdateView):
     
 class TaskDelete(DeleteView):
     model = Task
-    success_url= reverse_lazy('task_list')
-    
+    url= reverse_lazy('task_list')
+
 class TaskListDone(ListView):
-    template_name = "task_list_filt.html"
     queryset = Task.objects.filter(done=True)
     
+#     def get_context_data(self, **kwargs):
+#         context = super(FilteredTaskList, self).get_context_data(**kwargs)
+#         context['task'] = Task.objects.filter(done=True)
+#         return context
+    
 class TaskListToDo(ListView):
-    template_name = "task_list_filt.html"
     queryset = Task.objects.filter(done=False)

@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Lista zadań - usuń</title>
 </head>
 <body>
 	<form method="post" action="">{% csrf_token %}
 		Czy na pewno chcesz usunąć zadanie "{{ object }}" ?
-		<input type="submit" value="Usuń" />
+		<input type="submit" value="Tak" />
+		<a href="{% url "task_list" %}">Nie</a>
 	</form>
 </body>
 </html>
