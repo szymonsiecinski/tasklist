@@ -18,6 +18,6 @@ Polecenie migrate Django
 > python manage.py migrate
 
 ## Do zrobienia
-* Dodanie filtru zadań do zrobienia (wyświetlanie wyłącznie zadań do zrobienia)
+* ~~Dodanie filtru zadań do zrobienia (wyświetlanie wyłącznie zadań do zrobienia)~~
 * Ostylowanie z Bootstrap 3
 * ~~Wyświetlanie w tabeli opisu zadań. W nagłówku kolumny zgodnie z modelem~~
