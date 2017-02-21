@@ -1,25 +1,30 @@
 # TaskList
 Lista zadań w Django
+Django task list
 
-**Autorzy**: Szymon Sieciński, Klaudia Kłoniecka, Agnieszka Kuźniak
+**Autor / Author**: Szymon Sieciński
 
-## Wymagania
+## Wymagania / Requirements
 * Python 3.4 +
 * Django 1.8 +
 * SQLite 3+
 
-## Jak uruchamiać?
+## Jak uruchamiać? / How to launch the app?
 Polecenie runserver Django
+> python manage.py runserver
+
+Run command
 > python manage.py runserver
 
 Domyślnie uruchomi się aplikacja działająca na http://localhost:8000
 
-## Generowanie bazy danych
-Polecenie migrate Django
+By default you can use the app at http://localhost:8000
 
+## Generowanie bazy danych / DB generation
+Polecenie migrate Django
+Run command
 > python manage.py migrate
 
-## Do zrobienia
-* ~~Dodanie filtru zadań do zrobienia (wyświetlanie wyłącznie zadań do zrobienia)~~
-* ~~Ostylowanie z Bootstrap 3~~
-* ~~Wyświetlanie w tabeli opisu zadań. W nagłówku kolumny zgodnie z modelem~~
+## To do list
+* Personalized task lists (a user has own tasks)
+* Improve task management UX (Creating, Edition, Deleting)
