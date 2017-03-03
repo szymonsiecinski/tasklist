@@ -1,36 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 {% load staticfiles %}
 <title>Lista zadań</title>
 <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" />
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 </head>
 <body>
-<h1>List zadań do wykonania</h1>
 
-<table class="table table-bordered">
-<thead>
-<tr>
-<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>Zrobione</td><td>Akcje</td>
-</tr>
-</thead>
-<tbody>
-{% for task in object_list %}
-	<tr>
-		<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td><td>{{task.done}}</td>
-		<td>
-			<a href="{% url "task_edit" task.id %}">edytuj</a>
-			<a href="{% url "task_delete" task.id %}">usuń</a>
-		</td>
-	</tr>
-{% endfor %}
-</tbody>
-</table>
-	
+
+<div class="container">
+    <h1>List zadań do wykonania</h1>
+
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>Zrobione</td><td>Akcje</td>
+		</tr>
+		</thead>
+		<tbody>
+		{% for task in object_list %}
+		<tr>
+			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td><td>{{task.done}}</td>
+			<td>
+				<a href="{% url "task_edit" task.id %}">edytuj</a>
+				<a href="{% url "task_delete" task.id %}">usuń</a>
+			</td>
+		</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
 	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
 	<a class="btn btn-default" href="{% url "task_list_done" %}">pokaż wykonane zadania</a>
 	<a class="btn btn-default" href="{% url "task_list_todo" %}">pokaż zadania do zrobienia</a>
+</div>
+
 </body>
 </html>

@@ -8,10 +8,14 @@
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
 </head>
 <body>
-<form method="post" action="">{% csrf_token %}
-{{form.as_p}}
-<button type="submit" class="btn btn-primary">Zapisz</button>
-<a class="btn btn-default" href="{% url "task_list" %}">Powrót do listy zadań</a>
-</form>
+
+<div class="container">
+    <form method="post" action="">{% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a class="btn btn-default" href="{% url "task_list" %}">Powrót do listy zadań</a>
+    </form>
+</div>
+
 </body>
 </html>
