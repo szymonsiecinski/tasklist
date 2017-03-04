@@ -4,6 +4,8 @@
 {% block content %}
 
 <div class="container">
+    <h1>Usuwanie zadania</h1>
+
 	<form method="post" action="">{% csrf_token %}
 		Czy na pewno chcesz usunąć zadanie "{{ object.name }}" ?
 		<button type="submit" class="btn btn-danger">Tak</button>
