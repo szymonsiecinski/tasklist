@@ -15,6 +15,7 @@ class TaskList(ListView):
     '''
     model = Task
 
+
 class TaskCreate(CreateView):
     '''
     Tworzenie nowego zadania
@@ -22,20 +23,28 @@ class TaskCreate(CreateView):
     model = Task
     success_url = reverse_lazy('task_list')
     fields = ['name', 'description', 'start', 'end', 'done']
-    
+
+
 class TaskUpdate(UpdateView):
+    '''zmiana zadania'''
     model = Task
     success_url = reverse_lazy('task_list')
     fields = ['name', 'description', 'start', 'end', 'done']
-    
+
+
 class TaskDelete(DeleteView):
+    '''usuwanie zadania'''
     model = Task
     success_url= reverse_lazy('task_list')
 
+
 class TaskListDone(ListView):
+    '''pokazuje wykonane zadania'''
     done = True
     queryset = Task.objects.filter(done=done)
-    
+
+
 class TaskListToDo(ListView):
+    '''pokazuje zadania do wykonania'''
     done = False
     queryset = Task.objects.filter(done=done)

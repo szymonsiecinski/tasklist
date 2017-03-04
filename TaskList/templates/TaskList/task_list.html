@@ -14,7 +14,8 @@
 		<tbody>
 		{% for task in object_list %}
 		<tr>
-			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td><td>{{task.done}}</td>
+			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td>
+            <td>{{task.done}}</td>
 			<td>
 				<a href="{% url "task_edit" task.id %}">edytuj</a>
 				<a href="{% url "task_delete" task.id %}">usuń</a>

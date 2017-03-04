@@ -8,8 +8,11 @@
 
 	<form method="post" action="">{% csrf_token %}
 		Czy na pewno chcesz usunąć zadanie "{{ object.name }}" ?
-		<button type="submit" class="btn btn-danger">Tak</button>
-		<a class="btn btn-default" href="{% url "task_list" %}">Nie</a>
+
+        <div>
+            <button type="submit" class="btn btn-danger">Tak</button>
+            <a class="btn btn-default" href="{% url "task_list" %}">Nie</a>
+        </div>
 	</form>
 </div>
 
