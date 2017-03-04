@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-{% load staticfiles %}
-{% if view.done %}
-<title>Lista zadań - wykonane</title>
-{% else %}
-<title>Lista zadań - do zrobienia</title>
-{% endif %}
-<link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" />
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-</head>
-<body>
+{% extends "layout.html" %}
 
+{% block title %}
+    {% if view.done %}
+     - Lista wykonanych zadań
+    {% else %}
+    - Lista zadań do wykonania
+    {% endif %}
+{% endblock %}
+
+{% block content %}
 <div class="container">
 	{% if view.done %}
 	<h1>List wykonanych zadań</h1>
@@ -43,5 +39,4 @@
 	<a class="btn btn-default" href="{% url "task_list" %}">pokaż listę zadań</a>
 </div>
 
-</body>
-</html>
+{% endblock %}
