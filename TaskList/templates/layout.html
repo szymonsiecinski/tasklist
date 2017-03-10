@@ -31,15 +31,20 @@
                 <li class="active"><a href="/">Strona główna</a></li>
                 <li><a href="">O TaskList</a></li>
             </ul>
+            {% if user is not None %}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="">Użytkownik</a></li>
-                <li><a href=""><span class="glyphicon glyphicon-off"></span>&nbsp;Wylogowanie</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>&nbsp;Wylogowanie</a></li>
             </ul>
+            {% endif %}
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 
-{% block content %}
-{% endblock content %}
+<div class="container">
+    {% block content %}
+    {% endblock content %}
+</div>
+
 </body>
 </html>

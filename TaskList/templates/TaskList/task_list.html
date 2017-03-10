@@ -2,7 +2,7 @@
 {% block title %} - Lista zadań{% endblock %}
 
 {% block content %}
-<div class="container">
+
     <h1>List zadań do wykonania</h1>
 
 	<table class="table table-bordered">
@@ -28,5 +28,5 @@
 	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
 	<a class="btn btn-default" href="{% url "task_list_done" %}">pokaż wykonane zadania</a>
 	<a class="btn btn-default" href="{% url "task_list_todo" %}">pokaż zadania do zrobienia</a>
-</div>
+
 {% endblock %}

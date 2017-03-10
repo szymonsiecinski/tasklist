@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+
 	{% if view.done %}
 	<h1>List wykonanych zadań</h1>
 	{% else %}
@@ -37,6 +37,5 @@
 
 	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
 	<a class="btn btn-default" href="{% url "task_list" %}">pokaż listę zadań</a>
-</div>
 
 {% endblock %}

@@ -2,7 +2,7 @@
 {% block title %}- formularz zadania{% endblock %}
 
 {% block content %}
-<div class="container">
+
     <h1>Dodawanie/edycja zadania</h1>
 
     <form method="post" action="">{% csrf_token %}
@@ -10,5 +10,5 @@
         <button type="submit" class="btn btn-primary">Zapisz</button>
         <a class="btn btn-default" href="{% url "task_list" %}">Powrót do listy zadań</a>
     </form>
-</div>
+
 {% endblock %}

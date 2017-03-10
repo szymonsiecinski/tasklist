@@ -3,7 +3,6 @@
 
 {% block content %}
 
-<div class="container">
     <h1>Usuwanie zadania</h1>
 
 	<form method="post" action="">{% csrf_token %}
@@ -14,6 +13,5 @@
             <a class="btn btn-default" href="{% url "task_list" %}">Nie</a>
         </div>
 	</form>
-</div>
 
 {% endblock %}
