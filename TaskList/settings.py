@@ -83,6 +83,8 @@ DATABASES = {
     }
 }
 
+#Authentication backend settings
+AUTHENTICATION_BACKENDS = ['TaskList.AuthenticationBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

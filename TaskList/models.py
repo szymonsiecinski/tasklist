@@ -8,10 +8,12 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime
 
+
 class Task(models.Model):
     '''
     Klasa opisująca zadania do wykonania wraz z opisem
     '''
+    user = models.ForeignKey("auth.User")
     name = models.CharField(max_length=256)
     description = models.TextField(max_length=4000)
     start = models.DateTimeField(default=datetime.now)

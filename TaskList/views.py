@@ -4,7 +4,7 @@ Created on 13 kwi 2016
 @author: uzytkownik
 '''
 
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from TaskList.models import Task
