@@ -14,16 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.contrib.auth.decorators import login_required
+
 from TaskList import views, auth_views
 
 urlpatterns = [
     url(r'^$', auth_views.LoginView.as_view(), name='login'),
     url(r'^register$', auth_views.RegisterView.as_view(), name='register'),
     url(r'^logout$', auth_views.Logout.as_view(), name='logout'),
-    url(r'^tasks$', views.TaskList.as_view(), name='task_list'),
-    url(r'^task/new/$', views.TaskCreate.as_view(), name='task_new'),
-    url(r'^task/edit/(?P<pk>\d+)$', views.TaskUpdate.as_view(), name='task_edit'),
-    url(r'^task/delete/(?P<pk>\d+)$', views.TaskDelete.as_view(template_name="TaskList/task_delete.html"), name='task_delete'),
-    url(r'^tasks/done/$', views.TaskListDone.as_view(template_name = "TaskList/task_list_filt.html"), name='task_list_done'),
-    url(r'^tasks/todo/$', views.TaskListToDo.as_view(template_name = "TaskList/task_list_filt.html"), name='task_list_todo')
+    url(r'^tasks$', login_required(views.TaskList.as_view()), name='task_list'),
+    url(r'^task/new/$', login_required(views.TaskCreate.as_view()), name='task_new'),
+    url(r'^task/edit/(?P<pk>\d+)$', login_required(views.TaskUpdate.as_view()), name='task_edit'),
+    url(r'^task/delete/(?P<pk>\d+)$',
+        login_required(views.TaskDelete.as_view(template_name="TaskList/task_delete.html")),
+        name='task_delete'),
+    url(r'^tasks/done/$',
+        login_required(views.TaskListDone.as_view(template_name = "TaskList/task_list_filt.html")),
+        name='task_list_done'),
+    url(r'^tasks/todo/$',
+        login_required(views.TaskListToDo.as_view(template_name = "TaskList/task_list_filt.html")),
+        name='task_list_todo')
 ]

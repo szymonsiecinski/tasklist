@@ -3,14 +3,12 @@ Created on 13 kwi 2016
 
 @author: uzytkownik
 '''
-from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from TaskList.models import Task
 
 
-@login_required
 class TaskList(ListView):
     '''
     Lista zadań
@@ -24,7 +22,6 @@ class TaskList(ListView):
     #queryset = Task.objects.filter()
 
 
-@login_required
 class TaskCreate(CreateView):
     '''
     Tworzenie nowego zadania
@@ -34,7 +31,6 @@ class TaskCreate(CreateView):
     fields = ['name', 'description', 'start', 'end', 'done']
 
 
-@login_required
 class TaskUpdate(UpdateView):
     '''zmiana zadania'''
     model = Task
@@ -42,7 +38,6 @@ class TaskUpdate(UpdateView):
     fields = ['name', 'description', 'start', 'end', 'done']
 
 
-@login_required
 class TaskDelete(DeleteView):
     '''usuwanie zadania'''
     model = Task
@@ -50,7 +45,6 @@ class TaskDelete(DeleteView):
     success_url= reverse_lazy('task_list')
 
 
-@login_required
 class TaskListDone(ListView):
     '''pokazuje wykonane zadania'''
     done = True
@@ -58,7 +52,6 @@ class TaskListDone(ListView):
     queryset = Task.objects.filter(done=done)
 
 
-@login_required
 class TaskListToDo(ListView):
     '''pokazuje zadania do wykonania'''
     done = False
