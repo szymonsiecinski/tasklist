@@ -3,12 +3,16 @@ Created on 13 kwi 2016
 
 @author: uzytkownik
 '''
+from django.contrib.auth import get_user
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from TaskList.models import Task
 
 
+@method_decorator(login_required, name='dispatch')
 class TaskList(ListView):
     '''
     Lista zadań
@@ -19,9 +23,8 @@ class TaskList(ListView):
         'user': None
     }
 
-    #queryset = Task.objects.filter()
 
-
+@method_decorator(login_required, name='dispatch')
 class TaskCreate(CreateView):
     '''
     Tworzenie nowego zadania
@@ -31,6 +34,7 @@ class TaskCreate(CreateView):
     fields = ['name', 'description', 'start', 'end', 'done']
 
 
+@method_decorator(login_required, name='dispatch')
 class TaskUpdate(UpdateView):
     '''zmiana zadania'''
     model = Task
@@ -38,6 +42,7 @@ class TaskUpdate(UpdateView):
     fields = ['name', 'description', 'start', 'end', 'done']
 
 
+@method_decorator(login_required, name='dispatch')
 class TaskDelete(DeleteView):
     '''usuwanie zadania'''
     model = Task
@@ -45,6 +50,7 @@ class TaskDelete(DeleteView):
     success_url= reverse_lazy('task_list')
 
 
+@method_decorator(login_required, name='dispatch')
 class TaskListDone(ListView):
     '''pokazuje wykonane zadania'''
     done = True
@@ -52,6 +58,7 @@ class TaskListDone(ListView):
     queryset = Task.objects.filter(done=done)
 
 
+@method_decorator(login_required, name='dispatch')
 class TaskListToDo(ListView):
     '''pokazuje zadania do wykonania'''
     done = False
