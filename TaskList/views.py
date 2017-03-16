@@ -48,6 +48,16 @@ class TaskCreate(CreateView):
     success_url = reverse_lazy('task_list')
     fields = ['name', 'description', 'start', 'end', 'done']
 
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskCreate, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskUpdate(UpdateView):
@@ -55,6 +65,16 @@ class TaskUpdate(UpdateView):
     model = Task
     success_url = reverse_lazy('task_list')
     fields = ['name', 'description', 'start', 'end', 'done']
+
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskUpdate, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 @method_decorator(login_required, name='dispatch')
@@ -64,6 +84,16 @@ class TaskDelete(DeleteView):
     login_required = True
     success_url= reverse_lazy('task_list')
 
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskDelete, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskListDone(ListView):
@@ -72,6 +102,16 @@ class TaskListDone(ListView):
     allow_empty = True
     queryset = Task.objects.filter(done=done)
 
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskListDone, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskListToDo(ListView):
@@ -79,6 +119,16 @@ class TaskListToDo(ListView):
     done = False
     allow_empty = True
     queryset = Task.objects.filter(done=done)
+
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskListToDo, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 class About(View):
