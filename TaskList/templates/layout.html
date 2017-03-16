@@ -31,7 +31,7 @@
                 <li class="active"><a href="/">Strona główna</a></li>
                 <li><a href="/about">O TaskList</a></li>
             </ul>
-            {% if user is not None %}
+            {% if user.is_authenticated %}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="">Użytkownik {{user}}</a></li>
                 <li><a href="/logout"><span class="glyphicon glyphicon-off"></span>&nbsp;Wylogowanie</a></li>
