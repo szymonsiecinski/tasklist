@@ -19,11 +19,24 @@ class TaskList(ListView):
     '''
     Lista zadań
     '''
-    model = Task
     allow_empty = True
-    context = {
-        'user': None
-    }
+
+    def get_queryset(self):
+        '''
+        zwraca listę zadań dla użytkownika
+        :return: lista zadań dla bieżącego użytkownika
+        '''
+        return Task.objects.filter(user=self.request.user.pk)
+
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widuoku
+        '''
+        context = super(TaskList, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 @method_decorator(login_required, name='dispatch')
