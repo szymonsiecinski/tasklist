@@ -14,7 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib.auth.decorators import login_required
 
 from TaskList import views, auth_views
 
@@ -22,6 +21,7 @@ urlpatterns = [
     url(r'^$', auth_views.LoginView.as_view(), name='login'),
     url(r'^register$', auth_views.RegisterView.as_view(), name='register'),
     url(r'^logout$', auth_views.Logout.as_view(), name='logout'),
+    url(r'^about$', views.About.as_view(), name='about'),
     url(r'^tasks$', views.TaskList.as_view(), name='task_list'),
     url(r'^task/new/$', views.TaskCreate.as_view(), name='task_new'),
     url(r'^task/edit/(?P<pk>\d+)$', views.TaskUpdate.as_view(), name='task_edit'),
