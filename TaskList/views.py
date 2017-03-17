@@ -58,6 +58,10 @@ class TaskCreate(CreateView):
         context['user'] = self.request.user
         return context
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskCreate, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskUpdate(UpdateView):
@@ -76,6 +80,10 @@ class TaskUpdate(UpdateView):
         context['user'] = self.request.user
         return context
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskUpdate, self).form_valid(form)
+
 
 @method_decorator(login_required, name='dispatch')
 class TaskDelete(DeleteView):
@@ -93,6 +101,10 @@ class TaskDelete(DeleteView):
         context = super(TaskDelete, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TaskDelete, self).form_valid(form)
 
 
 @method_decorator(login_required, name='dispatch')
