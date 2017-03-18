@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, UpdateView
 
-from models import Task
+from TaskList.models import Task
 
 
 @method_decorator(login_required, name='dispatch')
