@@ -102,10 +102,6 @@ class TaskDelete(DeleteView):
         context['user'] = self.request.user
         return context
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(TaskDelete, self).form_valid(form)
-
 
 @method_decorator(login_required, name='dispatch')
 class TaskListDone(ListView):
