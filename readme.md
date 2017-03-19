@@ -26,5 +26,5 @@ Run command
 > python manage.py migrate
 
 ## To do list
-* Personalized task lists (a user has own tasks)
+* ~~Personalized task lists (a user has own tasks)~~
 * Improve task management UX (Creating, Edition, Deleting)
