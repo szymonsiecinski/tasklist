@@ -30,10 +30,10 @@ urlpatterns = [
         manipulation_views.TaskDelete.as_view(template_name="TaskList/task_delete.html"),
         name='task_delete'),
     url(r'^tasks/done/$',
-        list_views.TaskListDone.as_view(template_name = "TaskList/task_list_filt.html"),
+        list_views.TaskListFilteredByFlagDone.as_view(done=True, template_name = "TaskList/task_list_filt.html"),
         name='task_list_done'),
     url(r'^tasks/todo/$',
-        list_views.TaskListToDo.as_view(template_name = "TaskList/task_list_filt.html"),
+        list_views.TaskListFilteredByFlagDone.as_view(done=False, template_name = "TaskList/task_list_filt.html"),
         name='task_list_todo'),
     url(r'^accounts/login/$', auth_views.LoginView.as_view()),
 ]

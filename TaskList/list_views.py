@@ -30,12 +30,14 @@ class TaskList(ListView):
         return context
 
 
-@method_decorator(login_required, name='dispatch')
-class TaskListDone(ListView):
+@method_decorator(login_required, 'dispatch')
+class TaskListFilteredByFlagDone(ListView):
     '''pokazuje wykonane zadania'''
     done = True
     allow_empty = True
-    queryset = Task.objects.filter(done=done)
+
+    def get_queryset(self):
+        return Task.objects.filter(user=self.request.user.pk, done=self.done)
 
     def get_context_data(self, **kwargs):
         '''
@@ -43,24 +45,6 @@ class TaskListDone(ListView):
         :param kwargs: zmienne kontekstu
         :return: kontekst widuoku
         '''
-        context = super(TaskListDone, self).get_context_data(**kwargs)
-        context['user'] = self.request.user
-        return context
-
-
-@method_decorator(login_required, name='dispatch')
-class TaskListToDo(ListView):
-    '''pokazuje zadania do wykonania'''
-    done = False
-    allow_empty = True
-    queryset = Task.objects.filter(done=done)
-
-    def get_context_data(self, **kwargs):
-        '''
-        zwraca kontekst danych widoku
-        :param kwargs: zmienne kontekstu
-        :return: kontekst widuoku
-        '''
-        context = super(TaskListToDo, self).get_context_data(**kwargs)
+        context = super(TaskListFilteredByFlagDone, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
