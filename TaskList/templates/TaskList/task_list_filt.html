@@ -31,6 +31,10 @@
 				<a href="{% url "task_delete" task.id %}">usuń</a>
 			</td>
 		</tr>
+		{% empty %}
+		<tr>
+            Brak zadań {% if view.done %}wykonanych.{% else %}do wykonania.{% endif %}
+		</tr>
 		{% endfor %}
 		</tbody>
 	</table>

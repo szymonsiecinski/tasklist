@@ -38,3 +38,20 @@ class UserPage(View):
             'tasks_todo': Task.objects.filter(user=user.pk, done=False).count()
         }
         return render(request, "TaskList/user_page.html", context=context)
+
+
+@method_decorator(login_required, 'dispatch')
+class ChangePasswordView(View):
+    def get(self, request):
+
+        user = get_user(request)
+        context = {
+            'user': user,
+            'tasks': Task.objects.filter(user=user.pk).count(),
+            'tasks_done': Task.objects.filter(user=user.pk, done=True).count(),
+            'tasks_todo': Task.objects.filter(user=user.pk, done=False).count()
+        }
+        return render(request, "TaskList/user_page.html", context=context)
+
+    def post(self, request):
+        return render(request, "TaskList/user_page.html", context=context)
