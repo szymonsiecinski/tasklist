@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %} - o TaskList{% endblock %}
+
+{% block content %}
+Użytkownik {{user}}
+
+Zadań: {{tasks}},
+<ul>
+    <li>
+        Wykonane: {{tasks_done}}
+    </li>
+    <li>
+        Do wykonania: {{tasks_todo}}
+    </li>
+</ul>
+{% endblock %}
