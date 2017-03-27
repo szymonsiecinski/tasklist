@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^logout$', auth_views.Logout.as_view(), name='logout'),
     url(r'^about$', views.About.as_view(), name='about'),
     url(r'^user', views.UserPage.as_view(), name='user_page'),
+    url(r'^changepass', views.ChangePasswordView.as_view(), name='change_password'),
     url(r'^tasks$', list_views.TaskList.as_view(), name='task_list'),
     url(r'^task/new/$', manipulation_views.TaskCreate.as_view(), name='task_new'),
     url(r'^task/edit/(?P<pk>\d+)$',

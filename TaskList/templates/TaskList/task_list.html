@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <h1>Lista zadań do wykonania</h1>
+    <h1>Lista zadań</h1>
 
 	<table class="table table-bordered">
 		<thead>
@@ -23,8 +23,8 @@
 				{% endif %}
 			</td>
 			<td>
-				<a href="{% url "task_edit" task.id %}">edytuj</a>
-				<a href="{% url "task_delete" task.id %}">usuń</a>
+				<a href="{% url 'task_edit' task.id %}">edytuj</a>
+				<a href="{% url 'task_delete' task.id %}">usuń</a>
 			</td>
 		</tr>
         {% empty %}
@@ -33,8 +33,8 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
-	<a class="btn btn-default" href="{% url "task_list_done" %}">pokaż wykonane zadania</a>
-	<a class="btn btn-default" href="{% url "task_list_todo" %}">pokaż zadania do zrobienia</a>
+	<a class="btn btn-success" href="{% url 'task_new' %}">dodaj</a>
+	<a class="btn btn-default" href="{% url 'task_list_done' %}">pokaż wykonane zadania</a>
+	<a class="btn btn-default" href="{% url 'task_list_todo' %}">pokaż zadania do zrobienia</a>
 
 {% endblock %}
