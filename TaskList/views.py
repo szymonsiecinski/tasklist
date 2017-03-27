@@ -3,11 +3,10 @@ Created on 13 kwi 2016
 
 @author: uzytkownik
 '''
-from django.contrib.auth import get_user
+from django.contrib.auth import get_user, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
 from TaskList.models import Task
@@ -57,9 +56,15 @@ class ChangePasswordView(View):
         password = request.POST['password']
         conf_password = request.POST['conf_password']
 
-        if password == conf_password and not user.check_password(password):
+        new_password_is_valid = password == conf_password and not user.check_password(password)
+        if new_password_is_valid:
             user.set_password(password)
             user.save()
+
+            # ponowny login po zmianie hasła
+            login(request, user)
+
+        # sprawdzanie, czy nowe hasło jest takie, jak obecne
         elif user.check_password(password):
             context = {
                 'user': user_name,
@@ -73,4 +78,4 @@ class ChangePasswordView(View):
             }
             return render(request, self.TEMPLATE_NAME, context)
 
-        return HttpResponseRedirect("/")
+        return redirect("user_page")
