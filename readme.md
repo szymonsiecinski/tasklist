@@ -7,7 +7,7 @@ Django task list
 ## Wymagania / Requirements
 * Python 3.4 +
 * Django 1.8 +
-* SQLite 3+
+* SQLite 3+ lub jakakolwiek zgodna z Django baza danych/or any Django-compatible database
 
 ## Jak uruchamiać? / How to launch the app?
 Polecenie runserver Django
