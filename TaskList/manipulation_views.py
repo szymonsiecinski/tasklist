@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DeleteView, UpdateView
 
+import forms
 from TaskList.models import Task
 
 
@@ -13,7 +14,7 @@ class TaskCreate(CreateView):
     '''
     model = Task
     success_url = reverse_lazy('task_list')
-    fields = ['name', 'description', 'start', 'end', 'done']
+    form_class = forms.TaskEditForm
 
     def get_context_data(self, **kwargs):
         '''
@@ -36,7 +37,7 @@ class TaskUpdate(UpdateView):
     '''zmiana zadania'''
     model = Task
     success_url = reverse_lazy('task_list')
-    fields = ['name', 'description', 'start', 'end', 'done']
+    form_class = forms.TaskEditForm
 
     def get_context_data(self, **kwargs):
         '''
