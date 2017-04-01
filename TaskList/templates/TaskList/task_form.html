@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <h1>Dodawanie/edycja zadania</h1>
+    <h1>{% if edit %}Dodawanie{% else %}Edycja{% endif %} zadania</h1>
 
     <form method="post" action="">{% csrf_token %}
         {{form.as_p}}

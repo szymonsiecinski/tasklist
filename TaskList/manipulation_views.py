@@ -23,6 +23,7 @@ class TaskCreate(CreateView):
         '''
         context = super(TaskCreate, self).get_context_data(**kwargs)
         context['user'] = self.request.user
+        context['edit'] = True
         return context
 
     def form_valid(self, form):
@@ -45,6 +46,7 @@ class TaskUpdate(UpdateView):
         '''
         context = super(TaskUpdate, self).get_context_data(**kwargs)
         context['user'] = self.request.user
+        context['edit'] = False
         return context
 
     def form_valid(self, form):
