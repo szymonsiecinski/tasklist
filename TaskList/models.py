@@ -6,7 +6,7 @@ Created on 13 kwi 2016
 from django.contrib.auth.models import User
 from django.db import models
 from django.core.urlresolvers import reverse
-from datetime import datetime
+from datetime import datetime, timezone
 
 
 class Task(models.Model):
@@ -29,3 +29,9 @@ class Task(models.Model):
     def finish(self):
         self.done = True
         self.end = datetime()
+
+    def calculate_task_time(self):
+        return self.end - self.start
+
+    def calculate_real_task_time(self):
+        return datetime.now(timezone.utc) - self.start

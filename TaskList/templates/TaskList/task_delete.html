@@ -3,7 +3,7 @@
 
 {% block content %}
 
-    <h1>Usuwanie zadania</h1>
+    <h1>Usuwanie zadania {{object.name}}</h1>
 
 	<form method="post" action="">{% csrf_token %}
 		Czy na pewno chcesz usunąć zadanie "{{ object.name }}" ?
