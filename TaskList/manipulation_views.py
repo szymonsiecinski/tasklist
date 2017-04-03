@@ -60,7 +60,8 @@ class TaskDelete(DeleteView):
     '''usuwanie zadania'''
     model = Task
     login_required = True
-    success_url= reverse_lazy('task_list')
+    template_name = "TaskList/task_delete.html"
+    success_url = reverse_lazy('task_list')
 
     def get_context_data(self, **kwargs):
         '''

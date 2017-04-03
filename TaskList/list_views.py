@@ -12,6 +12,7 @@ class TaskList(ListView):
     '''
     allow_empty = True
 
+
     def get_queryset(self):
         '''
         zwraca listę zadań dla użytkownika
@@ -35,6 +36,7 @@ class TaskListFilteredByFlagDone(ListView):
     '''pokazuje wykonane zadania'''
     done = True
     allow_empty = True
+    template_name = "TaskList/task_list_filt.html"
 
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user.pk, done=self.done)

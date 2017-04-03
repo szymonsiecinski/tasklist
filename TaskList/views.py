@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.generic import DetailView
+
 from TaskList.models import Task
 
 
@@ -36,6 +38,16 @@ class UserPage(View):
             'tasks_todo': Task.objects.filter(user=user.pk, done=False).count()
         }
         return render(request, "TaskList/user_page.html", context=context)
+
+
+class TaskDetailsView(DetailView):
+    template_name = "TaskList/task_details.html"
+    model = Task
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskDetailsView, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
 
 
 @method_decorator(login_required, 'dispatch')

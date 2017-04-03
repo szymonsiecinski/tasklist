@@ -27,8 +27,9 @@
 		<tr>
 			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td>
 			<td>
-				<a href="{% url "task_edit" task.id %}">edytuj</a>
-				<a href="{% url "task_delete" task.id %}">usuń</a>
+				<a href="{% url 'task_details' task.id %}">szczegóły</a>
+				<a href="{% url 'task_edit' task.id %}">edytuj</a>
+				<a href="{% url 'task_delete' task.id %}">usuń</a>
 			</td>
 		</tr>
 		{% empty %}
@@ -39,7 +40,7 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-success" href="{% url "task_new" %}">dodaj</a>
-	<a class="btn btn-default" href="{% url "task_list" %}">pokaż listę zadań</a>
+	<a class="btn btn-success" href="{% url 'task_new' %}">dodaj</a>
+	<a class="btn btn-default" href="{% url 'task_list' %}">pokaż listę zadań</a>
 
 {% endblock %}

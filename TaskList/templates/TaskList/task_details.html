@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}- szczegóły zadania {{object.name}} {% endblock %}
+
+{% block content %}
+
+<h1>Zadanie {{object.name}}</h1>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <td>Opis</td><td>{{object.description}}</td>
+        </tr>
+        <tr>
+            <td>Start</td><td>{{object.start}}</td>
+        </tr>
+        <tr>
+            <td>Koniec</td><td>{{object.stop}}</td>
+        </tr>
+        <tr>
+            <td>Wykonane</td><td>{% if object.done %}Tak{% else %}Nie{% endif %}</td>
+        </tr>
+        <tr>
+            <!--<td>Deklarowany czas wykonania zadania</td><td>0</td>-->
+        </tr>
+        <tr>
+            <!--<td>Faktyczny czas wykonania zadania</td><td>0</td>-->
+        </tr>
+    </tbody>
+</table>
+
+<a class="btn btn-default" href="{% url 'task_list' %}">Powrót do listy zadań</a>
+
+{% endblock %}
