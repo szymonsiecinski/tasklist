@@ -40,6 +40,7 @@ class UserPage(View):
         return render(request, "TaskList/user_page.html", context=context)
 
 
+@method_decorator(login_required, 'dispatch')
 class TaskDetailsView(DetailView):
     template_name = "TaskList/task_details.html"
     model = Task
