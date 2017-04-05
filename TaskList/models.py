@@ -34,4 +34,8 @@ class Task(models.Model):
         return self.end - self.start
 
     def calculate_real_task_time(self):
-        return datetime.now(timezone.utc) - self.start
+
+        if not self.done:
+            return datetime.now(timezone.utc) - self.start
+
+        return self.calculate_task_time()

@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^task/new/$', manipulation_views.TaskCreate.as_view(), name='task_new'),
     url(r'^task/edit/(?P<pk>\d+)$', manipulation_views.TaskUpdate.as_view(), name='task_edit'),
     url(r'^task/delete/(?P<pk>\d+)$', manipulation_views.TaskDelete.as_view(), name='task_delete'),
+    #url(r'^task/finish/(?P<pk>\d+)$', manipulation_views.TaskDelete.as_view(), name='task_finish'),
     url(r'^tasks/done/$', list_views.TaskListFilteredByFlagDone.as_view(done=True), name='task_list_done'),
     url(r'^tasks/todo/$', list_views.TaskListFilteredByFlagDone.as_view(done=False), name='task_list_todo'),
     url(r'^accounts/login/$', auth_views.LoginView.as_view()),
