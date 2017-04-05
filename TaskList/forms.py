@@ -11,7 +11,7 @@ class TaskEditForm(forms.ModelForm):
 
     class Meta:
         model = Task
-        fields = ['name', 'description', 'start', 'end',] #'done']
+        fields = ['name', 'description', 'start', 'end']
         labels = {
             'name': _('Nazwa'),
             'description': _('Opis'),

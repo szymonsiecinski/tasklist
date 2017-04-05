@@ -12,7 +12,6 @@ class TaskList(ListView):
     '''
     allow_empty = True
 
-
     def get_queryset(self):
         '''
         zwraca listę zadań dla użytkownika

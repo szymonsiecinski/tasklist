@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.generic import CreateView, DeleteView, UpdateView
 
 import forms
@@ -67,8 +69,18 @@ class TaskDelete(DeleteView):
         '''
         zwraca kontekst danych widoku
         :param kwargs: zmienne kontekstu
-        :return: kontekst widuoku
+        :return: kontekst widoku
         '''
         context = super(TaskDelete, self).get_context_data(**kwargs)
         context['user'] = self.request.user
         return context
+
+
+@method_decorator(login_required, name='dispatch')
+class TaskFinish(View):
+    def get(self, request, **kwargs):
+        task = Task.objects.get(user=self.request.user.pk, pk=kwargs['pk'])
+        task.finish()
+        task.save()
+
+        return HttpResponseRedirect(reverse_lazy('task_list'))

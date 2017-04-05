@@ -28,6 +28,7 @@
 			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td>
 			<td>
 				<a href="{% url 'task_details' task.id %}">szczegóły</a>
+				{% if not task.done %}<a href="{% url 'task_finish' task.id %}">zakończ</a>{% endif %}
 				<a href="{% url 'task_edit' task.id %}">edytuj</a>
 				<a href="{% url 'task_delete' task.id %}">usuń</a>
 			</td>

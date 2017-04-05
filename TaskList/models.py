@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime, timezone
+from django.utils.translation import ugettext_lazy as _
 
 
 class Task(models.Model):
@@ -28,7 +29,7 @@ class Task(models.Model):
     
     def finish(self):
         self.done = True
-        self.end = datetime()
+        self.end = datetime.now(timezone.utc)
 
     def calculate_task_time(self):
         return self.end - self.start
