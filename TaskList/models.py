@@ -4,6 +4,7 @@ Created on 13 kwi 2016
 @author: uzytkownik
 '''
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime, timezone
@@ -26,6 +27,11 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse('task', kwargs={'pk': self.pk})
+
+    def clean(self):
+        if self.start > self.end:
+            # tłumaczenie na angielski: Start date is later than end date.
+            raise ValidationError(_("Data zakończenia jest wcześniej niż data rozpoczęcia."))
     
     def finish(self):
         self.done = True
