@@ -1,6 +1,6 @@
-from bootstrap3_datetime_time.widgets import DateTimePicker
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from datetimewidget.widgets import DateTimeWidget
 
 from TaskList.models import Task
 
@@ -11,6 +11,11 @@ class TaskEditForm(forms.ModelForm):
         super(TaskEditForm, self).__init__(*args, **kwargs)
 
     class Meta:
+        DateTimeOptions = {
+            'language': 'pl',
+            'showMeridian': 'true'
+        }
+
         model = Task
         fields = ['name', 'description', 'start', 'end']
         labels = {
@@ -35,7 +40,7 @@ class TaskEditForm(forms.ModelForm):
                 'max_length': _("Opis jest za długi."),
             },
         }
-        # widgets = {
-        #     'start': DateTimePicker(options={"locale": "pl"}),
-        #     'end': DateTimePicker(options={"locale": "pl"}),
-        # }
+        widgets = {
+            'start': DateTimeWidget(options=DateTimeOptions, usel10n=True, bootstrap_version=3),
+            'end': DateTimeWidget(options=DateTimeOptions, usel10n=True, bootstrap_version=3)
+        }
