@@ -1,6 +1,5 @@
+from bootstrap3_datetime_time.widgets import DateTimePicker
 from django import forms
-from django.template.loader import render_to_string
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 
 from TaskList.models import Task
@@ -32,7 +31,11 @@ class TaskEditForm(forms.ModelForm):
             'name': {
                 'max_length': _("Nazwa jest za długa."),
             },
+            'description': {
+                'max_length': _("Opis jest za długi."),
+            },
         }
         # widgets = {
-        #     'start': DateTimeWidget()
+        #     'start': DateTimePicker(options={"locale": "pl"}),
+        #     'end': DateTimePicker(options={"locale": "pl"}),
         # }

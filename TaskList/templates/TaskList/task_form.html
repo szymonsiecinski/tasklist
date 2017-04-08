@@ -1,12 +1,13 @@
 {% extends "layout.html" %}
-{% block title %}- formularz zadania{% endblock %}
+{% block title %}- {% if edit %}Dodawanie{% else %}Edycja{% endif %} zadania{% endblock %}
 
 {% block content %}
 
     <h1>{% if edit %}Dodawanie{% else %}Edycja{% endif %} zadania</h1>
+    {% load bootstrap %}
 
-    <form method="post" action="">{% csrf_token %}
-        {{form.as_p}}
+    <form method="post" role="form" action="">{% csrf_token %}
+        {{form | bootstrap}}
         <button type="submit" class="btn btn-primary">Zapisz</button>
         <a class="btn btn-default" href="{% url "task_list" %}">Powrót do listy zadań</a>
     </form>

@@ -54,6 +54,7 @@ class TaskUpdate(UpdateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        #form.instance.done = False
         return super(TaskUpdate, self).form_valid(form)
 
 

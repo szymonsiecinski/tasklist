@@ -19,7 +19,7 @@ class Task(models.Model):
     description = models.TextField(max_length=4000)
     start = models.DateTimeField(default=datetime.now)
     end = models.DateTimeField(default=datetime.now)
-    done = models.BooleanField()
+    done = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
