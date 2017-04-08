@@ -6,20 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from TaskList.models import Task
 
 
-# class DateTimeWidget(forms.Widget):
-#     template_name = 'datetime_widget.html'
-#
-#     def __init__(self, **kwargs):
-#         super(DateTimeWidget, self).__init__(**kwargs)
-#
-#     def render(self, name, value, attrs=None):
-#         context={
-#             'value': value,
-#             'id': name
-#         }
-#         return mark_safe(render_to_string(self.template_name, context))
-
-
 class TaskEditForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
