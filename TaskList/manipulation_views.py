@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
@@ -73,14 +73,27 @@ class TaskDelete(DeleteView):
         '''
         context = super(TaskDelete, self).get_context_data(**kwargs)
         context['user'] = self.request.user
+        context['delete_mode'] = True
         return context
 
 
 @method_decorator(login_required, name='dispatch')
 class TaskFinish(View):
+
+    template_name = "TaskList/task_delete.html"
+
     def get(self, request, **kwargs):
+        task = Task.objects.get(user=self.request.user.pk, pk=kwargs['pk'])
+        context = {
+            'delete_mode': False,
+            'user': self.request.user,
+            'object': task
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, **kwargs):
         task = Task.objects.get(user=self.request.user.pk, pk=kwargs['pk'])
         task.finish()
         task.save()
 
-        return HttpResponseRedirect(reverse_lazy('task_list'))
+        return redirect('task_list')

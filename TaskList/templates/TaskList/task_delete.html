@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
-{% block title %} - usuwanie zadania {{object.name}} {% endblock %}
+{% block title %} - {% if delete_mode %}usuwanie{% else %}zakończenie{% endif %} zadania {{object.name}} {% endblock %}
 
 {% block content %}
 
-    <h1>Usuwanie zadania {{object.name}}</h1>
+    <h1>{% if delete_mode %}Usuwanie{% else %}Zakończenie{% endif %} zadania {{object.name}}</h1>
 
-	<form method="post" action="">{% csrf_token %}
-		Czy na pewno chcesz usunąć zadanie "{{ object.name }}" ?
+	<form method="post" action="" role="form">{% csrf_token %}
+		Czy na pewno chcesz {% if delete_mode %}usunąć{% else %}zakończyć{% endif %} zadanie "{{ object.name }}" ?
 
         <div>
             <button type="submit" class="btn btn-danger">Tak</button>
