@@ -19,7 +19,7 @@
 	<table class="table table-bordered">
 		<thead>
 		<tr>
-			<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>akcje</td>
+			<td>Nazwa</td><td>Opis</td><td>Początek</td><td>Koniec</td><td>Akcje</td>
 		</tr>
 		</thead>
 		<tbody>
@@ -27,10 +27,23 @@
 		<tr>
 			<td>{{task.name}}</td><td>{{task.description}}</td><td>{{task.start}}</td><td>{{task.end}}</td>
 			<td>
-				<a href="{% url 'task_details' task.id %}">szczegóły</a>
-				{% if not task.done %}<a href="{% url 'task_finish' task.id %}">zakończ</a>{% endif %}
-				<a href="{% url 'task_edit' task.id %}">edytuj</a>
-				<a href="{% url 'task_delete' task.id %}">usuń</a>
+				<a class="btn btn-default" href="{% url 'task_details' task.id %}">
+					<span class="glyphicon glyphicon-info-sign"></span>
+					Szczegóły
+				</a>
+				{% if not task.done %}
+				<a class="btn btn-warning" href="{% url 'task_finish' task.id %}">
+					<span class="glyphicon glyphicon-stop"></span>
+					Zakończ
+				</a>
+				{% endif %}
+				<a class="btn btn-info" href="{% url 'task_edit' task.id %}">
+					<span class="glyphicon glyphicon-pencil"></span>
+					Edytuj
+				</a>
+				<a class="btn btn-danger" href="{% url 'task_delete' task.id %}">
+					<span class="glyphicon glyphicon-remove"></span> Usuń
+				</a>
 			</td>
 		</tr>
 		{% empty %}
@@ -41,7 +54,7 @@
 		</tbody>
 	</table>
 
-	<a class="btn btn-success" href="{% url 'task_new' %}">dodaj</a>
-	<a class="btn btn-default" href="{% url 'task_list' %}">pokaż listę zadań</a>
+	<a class="btn btn-success" href="{% url 'task_new' %}"><span class="glyphicon glyphicon-plus"></span> Dodaj</a>
+	<a class="btn btn-default" href="{% url 'task_list' %}">Pokaż listę zadań</a>
 
 {% endblock %}
