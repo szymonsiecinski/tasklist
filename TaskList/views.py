@@ -69,6 +69,10 @@ class ChangePasswordView(View):
         password = request.POST['password']
         conf_password = request.POST['conf_password']
 
+        context = {
+            'user': user
+        }
+
         new_password_is_valid = password == conf_password and not user.check_password(password)
         if new_password_is_valid:
             user.set_password(password)
@@ -79,16 +83,10 @@ class ChangePasswordView(View):
 
         # sprawdzanie, czy nowe hasło jest takie, jak obecne
         elif user.check_password(password):
-            context = {
-                'user': user_name,
-                'response': 'Podano obecne hasło.'
-            }
+            context['response']= 'Podano obecne hasło.'
             return render(request, self.TEMPLATE_NAME, context)
         else:
-            context = {
-                'user': user_name,
-                'response': 'Podane hasła się nie zgadzają.'
-            }
+            context['response']= 'Podane hasła się nie zgadzają.'
             return render(request, self.TEMPLATE_NAME, context)
 
         return redirect("user_page")
