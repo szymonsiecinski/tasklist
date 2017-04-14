@@ -27,6 +27,7 @@ class TaskList(ListView):
         '''
         context = super(TaskList, self).get_context_data(**kwargs)
         context['user'] = self.request.user
+        context['active'] = 'tasks'
         return context
 
 

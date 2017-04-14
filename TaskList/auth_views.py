@@ -14,7 +14,8 @@ class LoginView(View):
 
     def get(self, request):
         context = {
-            'user': None
+            'user': None,
+            'active': 'home'
         }
         return render(request, self.TEMPLATE_NAME, context)
 

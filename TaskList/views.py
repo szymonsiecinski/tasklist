@@ -18,10 +18,12 @@ class About(View):
     '''
     Wyświetla stronę z informacjami o projekcie
     '''
+
     def get(self, request):
         user = get_user(request)
         context = {
-            'user': user
+            'user': user,
+            'active': 'about'
         }
         return render(request, "TaskList/about.html", context=context)
 
@@ -33,6 +35,7 @@ class UserPage(View):
         user = get_user(request)
         context = {
             'user': user,
+            'active': 'user',
             'tasks': Task.objects.filter(user=user.pk).count(),
             'tasks_done': Task.objects.filter(user=user.pk, done=True).count(),
             'tasks_todo': Task.objects.filter(user=user.pk, done=False).count()
