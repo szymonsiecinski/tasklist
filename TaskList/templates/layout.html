@@ -12,12 +12,16 @@
     <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
+    <style>
+        body { padding-top: 75px; }
+    </style>
+
     {{ form.media }}
 </head>
 <body>
 
 <!-- panel nawigacyjny -->
-<nav class="navbar navbar-inverse navbar-fixed">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
