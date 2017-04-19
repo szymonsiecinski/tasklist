@@ -10,6 +10,8 @@ from django.core.urlresolvers import reverse
 from datetime import datetime, timezone
 from django.utils.translation import ugettext_lazy as _
 
+import polish_timedelta
+
 
 class Task(models.Model):
     '''
@@ -41,8 +43,15 @@ class Task(models.Model):
         return self.end - self.start
 
     def calculate_real_task_time(self):
+        real_task_time = datetime.now(timezone.utc) - self.start
 
         if not self.done:
-            return datetime.now(timezone.utc) - self.start
+            return real_task_time
 
         return self.calculate_task_time()
+
+    def get_localized_task_time(self):
+        return polish_timedelta.localize(self.calculate_task_time())
+
+    def get_localized_real_task_time(self):
+        return polish_timedelta.localize(self.calculate_real_task_time())

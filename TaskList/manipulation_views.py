@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import CreateView, DeleteView, UpdateView
 
-import forms
+from forms import TaskEditForm
 from TaskList.models import Task
 
 
@@ -16,7 +16,7 @@ class TaskCreate(CreateView):
     '''
     model = Task
     success_url = reverse_lazy('task_list')
-    form_class = forms.TaskEditForm
+    form_class = TaskEditForm
 
     def get_context_data(self, **kwargs):
         '''
@@ -39,7 +39,7 @@ class TaskUpdate(UpdateView):
     '''zmiana zadania'''
     model = Task
     success_url = reverse_lazy('task_list')
-    form_class = forms.TaskEditForm
+    form_class = TaskEditForm
 
     def get_context_data(self, **kwargs):
         '''
