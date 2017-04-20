@@ -8,6 +8,7 @@ Django task list
 * Python 3.4 +
 * Django 1.8 +
 * django-bootstrap
+* django-bootstrap-form
 * django-datetime-widget
 * SQLite 3+ lub jakakolwiek zgodna z Django baza danych/or any Django-compatible database
 
