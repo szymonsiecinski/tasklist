@@ -20,10 +20,12 @@
             <td>Wykonane</td><td>{% if object.done %}Tak{% else %}Nie{% endif %}</td>
         </tr>
         <tr>
-            <td>Deklarowany czas wykonania zadania</td><td>{{object.calculate_task_time}}</td>
+            <td>Deklarowany czas wykonania zadania</td>
+            <td>{{object.get_localized_task_time}}</td>
         </tr>
         <tr>
-            <td>Faktyczny czas wykonania zadania</td><td>{{object.calculate_real_task_time}}</td>
+            <td>Faktyczny czas wykonania zadania</td>
+            <td>{{object.get_localized_real_task_time}}</td>
         </tr>
     </tbody>
 </table>
