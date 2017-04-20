@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 from datetime import datetime, timezone
 from django.utils.translation import ugettext_lazy as _
 
-import polish_timedelta
+from . import polish_timedelta
 
 
 class Task(models.Model):
