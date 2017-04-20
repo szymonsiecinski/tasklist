@@ -1,0 +1,5 @@
+.project
+.idea/
+TaskList.iml
+TaskList/__pycache__/
+db.sqlite3
