@@ -5,6 +5,15 @@ from datetimewidget.widgets import DateTimeWidget
 from TaskList.models import Task
 
 
+class ChangePasswordForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        super(ChangePasswordForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        fields = ['password', 'password2']
+
+
 class TaskEditForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

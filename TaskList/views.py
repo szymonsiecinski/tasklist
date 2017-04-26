@@ -7,10 +7,13 @@ from django.contrib.auth import get_user, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.generic import FormView
 
 from TaskList.models import Task
+from forms import ChangePasswordForm
 
 
 class About(View):
@@ -43,15 +46,13 @@ class UserPage(View):
 
 
 @method_decorator(login_required, 'dispatch')
-class ChangePasswordView(View):
-    TEMPLATE_NAME = "TaskList/change_password.html"
+class ChangePasswordView(FormView):
+    template_name = "TaskList/change_password.html"
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy('user_page')
 
-    def get(self, request):
-        user = get_user(request)
-        context = {
-            'user': user,
-        }
-        return render(request, self.TEMPLATE_NAME, context=context)
+    def form_valid(self, form):
+        return super(ChangePasswordView, self).form_valid(form)
 
     def post(self, request):
         user_name = get_user(request)
