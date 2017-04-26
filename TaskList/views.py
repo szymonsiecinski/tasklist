@@ -30,8 +30,8 @@ class About(View):
 @method_decorator(login_required, 'dispatch')
 class UserPage(View):
     def get(self, request):
-
         user = get_user(request)
+
         context = {
             'user': user,
             'active': 'user',

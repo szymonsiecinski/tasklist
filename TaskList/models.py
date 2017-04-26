@@ -31,9 +31,15 @@ class Task(models.Model):
         return reverse('task', kwargs={'pk': self.pk})
 
     def clean(self):
+        '''
+        metoda wykonująca walidację modelu
+        :return: 
+        '''
         if self.start > self.end:
             # tłumaczenie na angielski: Start date is later than end date.
             raise ValidationError(_("Data zakończenia jest wcześniej niż data rozpoczęcia."))
+        else:
+            super(models.Model, self).clean()
     
     def finish(self):
         self.done = True
