@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from datetimewidget.widgets import DateTimeWidget
 
@@ -7,11 +8,20 @@ from TaskList.models import Task
 
 class ChangePasswordForm(forms.Form):
 
+    password = forms.CharField(widget=forms.PasswordInput(), label='Hasło')
+    confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Powtórz hasło')
+
     def __init__(self, *args, **kwargs):
         super(ChangePasswordForm, self).__init__(*args, **kwargs)
 
-    class Meta:
-        fields = ['password', 'password2']
+    def clean(self):
+        password = self.cleaned_data.get("password")
+        conf_password = self.cleaned_data.get("confirm_password")
+
+        if password != conf_password:
+            raise forms.ValidationError(_("Podane hasła się nie zgadzają."))
+
+        return self.cleaned_data
 
 
 class TaskEditForm(forms.ModelForm):
