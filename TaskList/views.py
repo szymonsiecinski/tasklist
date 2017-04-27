@@ -77,32 +77,3 @@ class ChangePasswordView(FormView):
         login(self.request, user)
 
         return super(ChangePasswordView, self).form_valid(form)
-
-    # def post(self, request):
-    #     user_name = get_user(request)
-    #     user = User.objects.get(username__exact=user_name)
-    #
-    #     password = request.POST['password']
-    #     conf_password = request.POST['conf_password']
-    #
-    #     context = {
-    #         'user': user
-    #     }
-    #
-    #     new_password_is_valid = password == conf_password and not user.check_password(password)
-    #     if new_password_is_valid:
-    #         user.set_password(password)
-    #         user.save()
-    #
-    #         # ponowny login po zmianie hasła
-    #         login(request, user)
-    #
-    #     # sprawdzanie, czy nowe hasło jest takie, jak obecne
-    #     elif user.check_password(password):
-    #         context['response']= 'Podano obecne hasło.'
-    #         return render(request, self.TEMPLATE_NAME, context)
-    #     else:
-    #         context['response']= 'Podane hasła się nie zgadzają.'
-    #         return render(request, self.TEMPLATE_NAME, context)
-    #
-    #     return redirect("user_page")
