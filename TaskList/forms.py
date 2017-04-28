@@ -6,6 +6,26 @@ from datetimewidget.widgets import DateTimeWidget
 from TaskList.models import Task
 
 
+class RegisterUserForm(forms.ModelForm):
+
+    password = forms.CharField(widget=forms.PasswordInput(), label='Hasło')
+    confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Powtórz hasło')
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterUserForm, self).__init__(*args, **kwargs)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get("password")
+        conf_password = self.cleaned_data.get("confirm_password")
+
+        return self.cleaned_data
+
+
 class ChangePasswordForm(forms.Form):
 
     password = forms.CharField(widget=forms.PasswordInput(), label='Hasło')
