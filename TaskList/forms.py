@@ -23,6 +23,9 @@ class RegisterUserForm(forms.ModelForm):
         password = self.cleaned_data.get("password")
         conf_password = self.cleaned_data.get("confirm_password")
 
+        if password != conf_password:
+            raise forms.ValidationError(_("Podane hasła się nie zgadzają."))
+
         return self.cleaned_data
 
 
