@@ -54,6 +54,16 @@ class ChangePasswordView(FormView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('user_page')
 
+    def get_context_data(self, **kwargs):
+        '''
+        zwraca kontekst danych widoku
+        :param kwargs: zmienne kontekstu
+        :return: kontekst widoku
+        '''
+        context = super(ChangePasswordView, self).get_context_data(**kwargs)
+        context['user'] = self.request.user
+        return context
+
     def form_valid(self, form):
         user_name = self.request.user
         user = User.objects.get(username__exact=user_name)

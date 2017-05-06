@@ -7,7 +7,6 @@ from TaskList.models import Task
 
 
 class RegisterUserForm(forms.ModelForm):
-
     password = forms.CharField(widget=forms.PasswordInput(), label='Hasło')
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label='Powtórz hasło')
 
@@ -16,7 +15,7 @@ class RegisterUserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'password', 'confirm_password']
 
     def clean(self):
         username = self.cleaned_data.get('username')
