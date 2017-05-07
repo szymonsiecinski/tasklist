@@ -9,7 +9,7 @@
     <form method="post" role="form" action="">{% csrf_token %}
         {{form | bootstrap}}
         <button type="submit" class="btn btn-primary">Zapisz</button>
-        <a class="btn btn-default" href="{% url "task_list" %}">Powrót do listy zadań</a>
+        <a class="btn btn-default" href="{% url 'task_list' %}">Powrót do listy zadań</a>
     </form>
 
 {% endblock %}
