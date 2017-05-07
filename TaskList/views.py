@@ -15,7 +15,7 @@ from django.views import View
 from django.views.generic import FormView
 
 from TaskList.models import Task
-from forms import ChangePasswordForm
+from TaskList.forms import ChangePasswordForm
 
 
 class About(View):

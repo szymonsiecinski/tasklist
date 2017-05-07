@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView
 
-from forms import RegisterUserForm
+from TaskList.forms import RegisterUserForm
 
 
 class LoginView(View):
