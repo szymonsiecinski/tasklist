@@ -15,7 +15,7 @@ from django.views import View
 from django.views.generic import FormView
 
 from TaskList.models import Task
-from TaskList.forms import ChangePasswordForm
+from TaskList.auth_forms import ChangePasswordForm
 
 
 class About(View):
@@ -49,7 +49,6 @@ class UserPage(View):
 
 @method_decorator(login_required, 'dispatch')
 class ChangePasswordView(FormView):
-
     template_name = "TaskList/change_password.html"
     form_class = ChangePasswordForm
     success_url = reverse_lazy('user_page')

@@ -3,45 +3,39 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView
+from django.views.generic import CreateView, FormView
 
-from TaskList.forms import RegisterUserForm
+from TaskList.auth_forms import RegisterUserForm, LoginForm
 
 
-class LoginView(View):
+class LoginView(FormView):
     """
     odpowiada za obsługę widoku logowania użytkownika
     """
-
     template_name = "TaskList/login.html"
+    form_class = LoginForm
+    success_url = reverse_lazy("task_list")
 
-    def get(self, request):
-        context = {
-            'user': None,
-            'active': 'home'
-        }
-        return render(request, self.template_name, context)
+    def get_context_data(self, **kwargs):
+        context = super(LoginView, self).get_context_data(**kwargs)
+        context['user'] = None
+        context['active'] = "home"
+        return context
 
-    def post(self, request):
-        username = request.POST['username']
-        password = request.POST['password']
+    def form_valid(self, form):
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
         user = authenticate(username=username, password=password)
 
         if user is not None:
             if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('/tasks')
-            else:
-                return render(request, self.template_name)
+                login(self.request, user)
+                return super(LoginView, self).form_valid(form)
         else:
-            context = {
-                'user': None,
-                'response': 'Sprawdź nazwę użytkownika i hasło.'
-            }
-            return render(request, self.template_name, context)
+            form.add_error(None, _("Podano niepoprawną nazwę użytkownika lub hasło."))
+            return self.form_invalid(form)
 
 
 class RegisterView(CreateView):
