@@ -1,8 +1,3 @@
-'''
-Created on 13 kwi 2016
-
-@author: uzytkownik
-'''
 from django.contrib.auth import get_user, login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import NON_FIELD_ERRORS
@@ -18,10 +13,10 @@ from TaskList.models import Task
 from TaskList.auth_forms import ChangePasswordForm
 
 
-class About(View):
-    '''
+class AboutView(View):
+    """
     Wyświetla stronę z informacjami o projekcie
-    '''
+    """
 
     def get(self, request):
         user = get_user(request)
@@ -33,7 +28,9 @@ class About(View):
 
 
 @method_decorator(login_required, 'dispatch')
-class UserPage(View):
+class UserPageView(View):
+    template_name = "TaskList/user_page.html"
+
     def get(self, request):
         user = get_user(request)
 
@@ -44,7 +41,7 @@ class UserPage(View):
             'tasks_done': Task.objects.filter(user=user.pk, done=True).count(),
             'tasks_todo': Task.objects.filter(user=user.pk, done=False).count()
         }
-        return render(request, "TaskList/user_page.html", context=context)
+        return render(request, self.template_name, context=context)
 
 
 @method_decorator(login_required, 'dispatch')

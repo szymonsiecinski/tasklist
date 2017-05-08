@@ -15,22 +15,25 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from TaskList import views, auth_views, list_views, manipulation_views
+from TaskList.views import *
+from TaskList.auth_views import *
+from TaskList.list_views import *
+from TaskList.manipulation_views import *
 
 urlpatterns = [
-    url(r'^$', auth_views.LoginView.as_view(), name='login'),
-    url(r'^register$', auth_views.RegisterView.as_view(), name='register'),
-    url(r'^logout$', auth_views.Logout.as_view(), name='logout'),
-    url(r'^about$', views.About.as_view(), name='about'),
-    url(r'^user', views.UserPage.as_view(), name='user_page'),
-    url(r'^changepass', views.ChangePasswordView.as_view(), name='change_password'),
-    url(r'^tasks$', list_views.TaskList.as_view(), name='task_list'),
-    url(r'^task/details/(?P<pk>\d+)$', list_views.TaskDetailsView.as_view(), name='task_details'),
-    url(r'^task/new/$', manipulation_views.TaskCreate.as_view(), name='task_new'),
-    url(r'^task/edit/(?P<pk>\d+)$', manipulation_views.TaskUpdate.as_view(), name='task_edit'),
-    url(r'^task/delete/(?P<pk>\d+)$', manipulation_views.TaskDelete.as_view(), name='task_delete'),
-    url(r'^task/finish/(?P<pk>\d+)$', manipulation_views.TaskFinish.as_view(), name='task_finish'),
-    url(r'^tasks/done/$', list_views.TaskListFilteredByFlagDone.as_view(done=True), name='task_list_done'),
-    url(r'^tasks/todo/$', list_views.TaskListFilteredByFlagDone.as_view(done=False), name='task_list_todo'),
-    url(r'^accounts/login/$', auth_views.LoginView.as_view()),
+    url(r'^$', LoginView.as_view(), name='login'),
+    url(r'^register$', RegisterView.as_view(), name='register'),
+    url(r'^logout$', Logout.as_view(), name='logout'),
+    url(r'^accounts/login/$', LoginView.as_view()),
+    url(r'^about$', AboutView.as_view(), name='about'),
+    url(r'^user', UserPageView.as_view(), name='user_page'),
+    url(r'^changepass', ChangePasswordView.as_view(), name='change_password'),
+    url(r'^tasks$', TaskList.as_view(), name='task_list'),
+    url(r'^task/details/(?P<pk>\d+)$', TaskDetailsView.as_view(), name='task_details'),
+    url(r'^task/new/$', TaskCreate.as_view(), name='task_new'),
+    url(r'^task/edit/(?P<pk>\d+)$', TaskUpdate.as_view(), name='task_edit'),
+    url(r'^task/delete/(?P<pk>\d+)$', TaskDelete.as_view(), name='task_delete'),
+    url(r'^task/finish/(?P<pk>\d+)$', TaskFinish.as_view(), name='task_finish'),
+    url(r'^tasks/done/$', TaskListFilteredByFlagDone.as_view(done=True), name='task_list_done'),
+    url(r'^tasks/todo/$', TaskListFilteredByFlagDone.as_view(done=False), name='task_list_todo'),
 ]

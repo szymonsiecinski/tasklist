@@ -5,7 +5,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.generic import CreateView, DeleteView, UpdateView
 
-from .forms import TaskEditForm
+from TaskList.forms import TaskEditForm
 from TaskList.models import Task
 
 
