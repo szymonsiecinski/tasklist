@@ -33,8 +33,6 @@ class Task(models.Model):
         if self.start > self.end:
             # tłumaczenie na angielski: Start date is later than end date.
             raise ValidationError(_("Data zakończenia jest wcześniej niż data rozpoczęcia."))
-        else:
-            super(models.Model, self).clean()
     
     def finish(self):
         self.done = True

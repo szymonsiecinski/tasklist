@@ -11,9 +11,7 @@ from TaskList.models import Task
 
 @method_decorator(login_required, name='dispatch')
 class TaskCreate(CreateView):
-    '''
-    Tworzenie nowego zadania
-    '''
+    """Tworzenie nowego zadania"""
     model = Task
     success_url = reverse_lazy('task_list')
     form_class = TaskEditForm
@@ -36,7 +34,7 @@ class TaskCreate(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class TaskUpdate(UpdateView):
-    '''zmiana zadania'''
+    """zmiana zadania"""
     model = Task
     success_url = reverse_lazy('task_list')
     form_class = TaskEditForm
@@ -59,7 +57,7 @@ class TaskUpdate(UpdateView):
 
 @method_decorator(login_required, name='dispatch')
 class TaskDelete(DeleteView):
-    '''usuwanie zadania'''
+    """usuwanie zadania"""
     model = Task
     login_required = True
     template_name = "TaskList/task_delete.html"
@@ -79,7 +77,7 @@ class TaskDelete(DeleteView):
 
 @method_decorator(login_required, name='dispatch')
 class TaskFinish(View):
-
+    """kończenie zadania"""
     template_name = "TaskList/task_delete.html"
 
     def get(self, request, **kwargs):
