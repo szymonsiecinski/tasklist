@@ -2,5 +2,6 @@ django>=1.8
 django-bootstrap-form
 django-datetime-widget
 gunicorn
+psycopg2
 dj-database-url
 whitenoise
