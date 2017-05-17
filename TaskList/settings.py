@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'TaskList.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES = {}
 DATABASES['default'].update(db_from_env)
 
 #DATABASES = {
