@@ -1,11 +1,10 @@
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import CreateView, FormView
+from django.views.generic import FormView
 
 from TaskList.auth_forms import RegisterUserForm, LoginForm
 
@@ -38,7 +37,7 @@ class LoginView(FormView):
             return self.form_invalid(form)
 
 
-class RegisterView(CreateView):
+class RegisterView(FormView):
     template_name = "TaskList/register.html"
     form_class = RegisterUserForm
     success_url = reverse_lazy("login")
@@ -52,7 +51,7 @@ class RegisterView(CreateView):
         form_data = form.clean()
         
         #Sprawdź, czy jest taki użytkownik. Jeśli go nie ma, utwórz go.
-        user, created = User.objects.get_or_create(username=form_data['username'])
+        user, created = User.objects.get_or_create(username__exact=form_data['username'])
         if created:
             user.set_password(form_data['password'])
             user.save()
