@@ -50,8 +50,8 @@ class RegisterView(FormView):
     def form_valid(self, form):
         form_data = form.clean()
         
-        #Sprawdź, czy jest taki użytkownik. Jeśli go nie ma, utwórz go.
-        user, created = User.objects.get_or_create(username__exact=form_data['username'])
+        # Sprawdź, czy jest taki użytkownik. Jeśli go nie ma, utwórz go.
+        user, created = User.objects.get_or_create(username=form_data['username'])
         if created:
             user.set_password(form_data['password'])
             user.save()
