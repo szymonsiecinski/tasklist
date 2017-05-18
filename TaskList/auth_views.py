@@ -60,9 +60,6 @@ class RegisterView(CreateView):
         else:
             form.add_error('username', _('Użytkownik o tej nazwie już istnieje.'))
             return super(RegisterView, self).form_invalid(form)
-        
-        try:
-            User.objects.get(username__exact=form_data['username'])
             
 
 class Logout(View):
