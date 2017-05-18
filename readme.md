@@ -2,6 +2,8 @@
 Lista zadań w Django
 Django task list
 
+WWW: https://django-tasklist.herokuapp.com/
+
 **Autor / Author**: Szymon Sieciński
 
 ## Wymagania / Requirements
