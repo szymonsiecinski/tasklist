@@ -51,18 +51,19 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         form_data = form.clean()
         
-        try:
-            User.objects.get(username__exact=form_data['username'])
-            form.add_error('username', _('Użytkownik o tej nazwie już istnieje.'))
-            return super(RegisterView, self).form_invalid(form)
-
-        except ObjectDoesNotExist:
-            # Wykonuj, jeżeli nie ma takiego użytkownika (happy path)
-            user = User(username=form_data['username'])
+        #Sprawdź, czy jest taki użytkownik. Jeśli go nie ma, utwórz go.
+        user, created = User.objects.get_or_create(username=form_data['username'])
+        if created:
             user.set_password(form_data['password'])
             user.save()
             return super(RegisterView, self).form_valid(form)
-
+        else:
+            form.add_error('username', _('Użytkownik o tej nazwie już istnieje.'))
+            return super(RegisterView, self).form_invalid(form)
+        
+        try:
+            User.objects.get(username__exact=form_data['username'])
+            
 
 class Logout(View):
     def get(self, request):
