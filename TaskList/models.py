@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime, timezone
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from TaskList import polish_timedelta
@@ -36,13 +37,13 @@ class Task(models.Model):
     
     def finish(self):
         self.done = True
-        self.end = datetime.now(timezone.utc)
+        self.end = timezone.now()
 
     def calculate_task_time(self):
         return self.end - self.start
 
     def calculate_real_task_time(self):
-        real_task_time = datetime.now(timezone.utc) - self.start
+        real_task_time = timezone.now() - self.start
 
         if not self.done:
             return real_task_time
