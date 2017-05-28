@@ -39,9 +39,7 @@ class Task(models.Model):
         self.end = timezone.now()
 
     def calculate_task_time(self):
-        end_aware = timezone.make_aware(self.end)
-        start_aware = timezone.make_aware(self.end)
-        return end_aware - start_aware
+        return self.end - self.start
 
     def calculate_real_task_time(self):
         real_task_time = timezone.now() - self.start
