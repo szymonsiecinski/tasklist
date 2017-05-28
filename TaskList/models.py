@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.core.urlresolvers import reverse
-from datetime import datetime, timezone
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
@@ -40,7 +39,9 @@ class Task(models.Model):
         self.end = timezone.now()
 
     def calculate_task_time(self):
-        return self.end - self.start
+        end_aware = timezone.make_aware(self.end)
+        start_aware = timezone().make_aware(self.end)
+        return end_aware - start_aware
 
     def calculate_real_task_time(self):
         real_task_time = timezone.now() - self.start
